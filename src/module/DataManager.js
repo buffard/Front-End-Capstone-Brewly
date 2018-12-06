@@ -22,8 +22,34 @@ export default Object.create(null, {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(item)
-      })
+      }) 
         .then(result => result.json())
     }
+  },
+  searchUsername: {
+    value: function(username) {
+      return fetch(`${remoteURL}/users?username=${username}`).then(result =>
+        result.json()
+      )
+    }
+  },
+
+  searchLogin: {
+    value: function(username, password) {
+      return fetch(
+        `${remoteURL}/users?username=${username}&password=${password}`
+      ).then(e => e.json())
+    }
   }
+
+
+
+
+
+
+
+
+
+
+
 })
