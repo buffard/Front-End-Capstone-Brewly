@@ -22,6 +22,13 @@ export default class NavbarBrewly extends React.Component {
       isOpen: !this.state.isOpen
     });
   }
+
+  logout = () => {
+    sessionStorage.clear("credentials")
+    this.props.setAuth()
+  }
+
+
   render() {
     return (
       <div>
@@ -36,11 +43,12 @@ export default class NavbarBrewly extends React.Component {
               <NavItem>
                 <NavLink href="/coffeejournal">Coffee Journal</NavLink>
               </NavItem>
-              <NavItem>
+              {/* TODO:look out for this and make sure to get rid of if you dont use */}
+              {/* <NavItem>
                 <NavLink href="/brewguides">Brew Guides</NavLink>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
-                <NavLink href="/logout">Log Out</NavLink>
+                <NavLink href="/logout" onClick={this.logout}>Log Out</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
