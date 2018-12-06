@@ -41,7 +41,7 @@ export default class NavbarBrewly extends React.Component {
                 <NavLink href="/home">Home</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/coffeejournal">Coffee Journal</NavLink>
+                <NavLink href="/journal">Coffee Journal</NavLink>
               </NavItem>
               {/* TODO:look out for this and make sure to get rid of if you dont use */}
               {/* <NavItem>

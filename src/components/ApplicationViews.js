@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import DataManager from '../module/DataManager'
-import Journal from './Journal/Journal'
+import JournalPage from './Journal/JournalPage'
+import JournalForm from './Journal/JournalForm'
 
 
 export default class ApplicationViews extends Component {
@@ -11,11 +12,11 @@ export default class ApplicationViews extends Component {
   }
 
   addJournal = entries => DataManager.add("journal", entries)
-  .then(() => DataManager.getAll("journal"))
-  .then(journal => this.setState({
-    journal: journal
-  })
-  )
+    .then(() => DataManager.getAll("journal"))
+    .then(journal => this.setState({
+      journal: journal
+    })
+    )
 
   componentDidMount() {
     const newState = {}
@@ -24,23 +25,30 @@ export default class ApplicationViews extends Component {
       .then(allEntries => {
         newState.journal = allEntries
       })
-  
-    .then(() => this.setState(newState))
+
+      .then(() => this.setState(newState))
   }
-
-
-
 
   render() {
     return (
       <React.Fragment>
+
+
         <Route exact path="/journal" render={(props) => {
-          return <Journal {...props} 
+          return <JournalPage {...props}
+            journal={this.state.journal}
+            addJournal={this.addJournal} />
+        }} />
+
+        <Route exact path="/journal/new" render={(props) => {
+          return <JournalForm {...props}
           journal={this.state.journal}
           addJournal={this.addJournal}/>
-        }}/>
+        }} />
+
+
       </React.Fragment>
-      )
+    )
   }
 }
 
