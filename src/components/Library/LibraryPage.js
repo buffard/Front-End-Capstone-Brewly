@@ -18,7 +18,7 @@ export default class LibraryPage extends Component {
           <Button type="button" className="btn btn-success" onClick={() => {
             this.props.history.push("/library/new")
           }}>
-            Create New Entry
+            Add New Coffee
           </Button>
         </div>
       </React.Fragment>
