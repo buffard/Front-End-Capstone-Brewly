@@ -6,8 +6,8 @@ export default class Brewly extends Component {
   render() {
     return (
       <React.Fragment>
-        <NavbarBrewly {...this.props}/>
-        <ApplicationViews {...this.props}/>
+        <NavbarBrewly {...this.props} />
+        <ApplicationViews {...this.props} />
       </React.Fragment>
     )
   }

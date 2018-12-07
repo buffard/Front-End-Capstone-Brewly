@@ -15,8 +15,8 @@ export default class AppAuth extends Component {
   }
   render() {
     return <React.Fragment>
-            <IsAuth isAuthenticated={this.isAuthenticated} setAuth={this.setAuth} />
-          </React.Fragment>
+      <IsAuth isAuthenticated={this.isAuthenticated} setAuth={this.setAuth} />
+    </React.Fragment>
   }
 }
 
