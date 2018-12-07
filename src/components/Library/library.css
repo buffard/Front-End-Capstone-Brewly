@@ -1,0 +1,30 @@
+.libraryForm {
+  width: 800px;
+  background-color: blanchedalmond;
+  margin: auto;
+}
+.roastBtn {
+  border:0px solid linen !important ;
+}
+
+.roast1 {
+  background-color: #e7dfdb !important;
+}
+.roast2 {
+  background-color: #b7a295 !important;
+}
+.roast3 {
+  background-color: #876955 !important;
+}
+.roast4 {
+  background-color: #6f4e37 !important;
+}
+.roast5 {
+  background-color: #5c412f !important;
+}
+.roast6 {
+  background-color: #38291f !important;
+}
+.roast7 {
+  background-color: #18120e !important;
+}

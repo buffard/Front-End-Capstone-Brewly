@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText, ButtonGroup } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import './journal.css'
 
 export default class JournalForm extends Component {
@@ -57,99 +57,78 @@ export default class JournalForm extends Component {
       )
 
   }
-//stuff for the roast rating
-
-constructor (props) {
-  super(props)
-  this.state = { cSelected: [] }
-  this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
-}
-
-onRadioBtnClick(rSelected) {
-  this.setState({ rSelected })
-}
-
-
-  
 
   render() {
     return (
       // TODO:change ids to match items in database
-      <Form className="journalForm">
-        <FormGroup>
-          <Label for="coffeeName">Coffee's Name</Label>
-          <Input type="text" name="coffeeName" id="coffeeName" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="roaster">Roaster</Label>
-          <Input type="text" name="roaster" id="roaster" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="origin">Origin</Label>
-          <Input type="text" name="origin" id="origin" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="roastDate">Roast Date</Label>
-          <Input type="date" name="roastDate" id="roastDate" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="brewDate">Brew Date</Label>
-          <Input type="date" name="brewDate" id="brewDate" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="dose">Dose</Label>
-          <Input type="text" name="dose" id="dose" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="origin">Water Used</Label>
-          <Input type="text" name="origin" id="origin" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="notes">Notes</Label>
-          <Input type="textarea" name="notes" id="notes" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="starRating">How did you like it</Label>
-          <Input type="select" name="starRating" id="starRating">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
-        </FormGroup>
-        <FormGroup>
-          <Label for="price">Price</Label>
-          <Input type="text" name="price" id="price" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="size">Bag Size</Label>
-          <Input type="text" name="size" id="size" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="favoriteBrewMethod">Favorite Brew Method</Label>
-          <Input type="select" name="favoriteBrewMethod" id="favoriteBrewMethod">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-          </Input>
-        </FormGroup>
-
-        <FormGroup>
-        <h5>Radio Buttons</h5>
-        <ButtonGroup>
-          <Button className="roast1" onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}>One</Button>
-          <Button className="roast2" onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}>Two</Button>
-          <Button className="roast3" onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>Three</Button>
-          <Button className="roast4" onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>Four</Button>
-          <Button className="roast5" onClick={() => this.onRadioBtnClick(5)} active={this.state.rSelected === 5}>Five</Button>
-          <Button className="roast6" onClick={() => this.onRadioBtnClick(6)} active={this.state.rSelected === 6}>Six</Button>
-          <Button className="roast7" onClick={() => this.onRadioBtnClick(7)} active={this.state.rSelected === 7}>Seven</Button>
-        </ButtonGroup>
-        <p>Selected: {this.state.rSelected}</p>
-        </FormGroup>
-        <Button>Submit</Button>
-      </Form>
+      <Container>
+        <Form className="journalForm">
+          <Row>
+            <Col xs="4">
+              <FormGroup>
+                <Label for="roastDate">Roast Date</Label>
+                <Input type="date" name="roastDate" id="roastDate" />
+              </FormGroup>
+            </Col>
+            <Col xs="4">
+              <FormGroup>
+                <Label for="brewDate">Brew Date</Label>
+                <Input type="date" name="brewDate" id="brewDate" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="4">
+              <FormGroup>
+                <Label for="dose">Dose</Label>
+                <Input type="text" name="dose" id="dose" />
+              </FormGroup>
+            </Col>
+            <Col xs="4">
+              <FormGroup>
+                <Label for="origin">Water Used</Label>
+                <Input type="text" name="origin" id="origin" />
+              </FormGroup>
+            </Col>
+            <Col xs="4">
+              <FormGroup>
+                <Label for="favoriteBrewMethod">Favorite Brew Method</Label>
+                <Input type="select" name="favoriteBrewMethod" id="favoriteBrewMethod">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </Input>
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs="12">
+              <FormGroup>
+                <Label for="notes">Notes</Label>
+                <Input type="textarea" name="notes" id="notes" />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row>
+          <Col xs="4">
+            <FormGroup>
+              <Label for="starRating">How did you like it</Label>
+              <Input type="select" name="starRating" id="starRating">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </Input>
+            </FormGroup>
+            </Col>
+          </Row>
+          
+          <Button>Submit</Button>
+        </Form>
+      </Container>
     )
   }
 }
+
+
