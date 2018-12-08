@@ -1,3 +1,24 @@
+/* PAGE */
+.libraryContainer {
+  display: flex;
+  flex-flow: row wrap;
+  /* flex-direction: row; */
+}
+
+.card {
+  margin: 10px;
+}
+
+
+/* 
+flex-flow: row wrap;
+margin-right: -15px;
+margin-left: -15px; */
+/* 
+display: flex;
+
+
+/* FORM */
 .libraryForm {
   width: 800px;
   background-color: blanchedalmond;
@@ -6,8 +27,6 @@
 .roastBtn {
   border:0px solid linen !important ;
 }
-
-
 .roast1 {
   background-color: #e7dfdb !important;
 }

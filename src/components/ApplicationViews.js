@@ -27,9 +27,9 @@ export default class ApplicationViews extends Component {
       library: library
     })
     )
-
-  componentDidMount() {
-    const newState = {}
+    
+    componentDidMount() {
+      const newState = {}
 
     DataManager.getAll("journal")
       .then(allEntries => {
@@ -38,9 +38,8 @@ export default class ApplicationViews extends Component {
 
     DataManager.getAll("library")
       .then(allEntries => {
-        newState.journal = allEntries
+        newState.library = allEntries
       })
-
       .then(() => this.setState(newState))
   }
 
@@ -62,7 +61,9 @@ export default class ApplicationViews extends Component {
         <Route exact path="/library" render={(props) => {
           return <LibraryPage {...props}
             library={this.state.library}
-            addLibrary={this.addLibrary} />
+            addLibrary={this.addLibrary}
+            
+             />
         }} />
 
         <Route exact path="/library/new" render={(props) => {
