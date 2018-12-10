@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap'
 import './library.css'
 
 export default class LibraryForm extends Component {

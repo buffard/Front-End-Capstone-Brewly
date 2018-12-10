@@ -6,12 +6,12 @@ export default class JournalList extends Component {
 
   render() {
     return (
-      <section className="journalContainer">
+      <section  className="journalContainer">
         {
           this.props.journal.map(journal =>
             <div key={journal.id}>
               <div>
-                <Card>
+                <Card className="journalCard">
                   <CardHeader>Brew Date: {journal.brewDate}</CardHeader>
                   <CardBody>
                     <CardTitle>Coffee Used: {journal.coffeeId}</CardTitle>
@@ -21,6 +21,7 @@ export default class JournalList extends Component {
                     <CardText>Brew Method: {journal.brewMethod}</CardText>
                     <CardText>Notes: {journal.notes}</CardText>
                     <Button outline
+                    className="editBtn"
                     color="warning"
                     onClick={() => this.props.history.push(`/journal/edit/${journal.id}`)}
                     >Edit</Button>
@@ -29,7 +30,7 @@ export default class JournalList extends Component {
                     onClick={() => this.props.deleteJournal(journal.id)}
                     >Delete</Button>
                   </CardBody>
-                  <CardFooter>{journal.starRating}</CardFooter>
+                  <CardFooter>{journal.starRating} <img alt='star icon' src={ require('./star.png') } />'s </CardFooter>
                 </Card>                  
               </div>
             </div>

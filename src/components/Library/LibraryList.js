@@ -11,7 +11,7 @@ export default class LibraryList extends Component {
           this.props.library.map(library =>
             <div key={library.id}>
               <div>
-                <Card body inverse color="info" >
+                <Card className="libraryCard" body inverse color="info" >
                   <CardImg top width="100%" src={require("./coffeeImg.jpg")} alt="Card image cap" />
                   <CardBody>
                     <CardTitle>{library.name}</CardTitle>
@@ -22,6 +22,7 @@ export default class LibraryList extends Component {
                     <CardText>Favorite Brew Method: {library.favoriteBrewMethod}</CardText>
                     <CardText>{library.size}</CardText>
                     <Button outline
+                    className="editBtn"
                     color="warning"
                     onClick={() => this.props.history.push(`/library/edit/${library.id}`)}
                     >Edit</Button>
