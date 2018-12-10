@@ -60,7 +60,7 @@ export default class LibraryForm extends Component {
           <Row>
             <Col xs="6">
               <FormGroup>
-                <Label for="name">Coffee's Name</Label>
+                <Label for="name">Coffee Name</Label>
                 <Input type="text"
                   name="name"
                   id="name"
