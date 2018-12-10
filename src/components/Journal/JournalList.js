@@ -12,14 +12,14 @@ export default class JournalList extends Component {
             <div key={journal.id}>
               <div>
                 <Card>
-                  <CardHeader>{journal.brewDate}</CardHeader>
+                  <CardHeader>Brew Date: {journal.brewDate}</CardHeader>
                   <CardBody>
-                    <CardTitle>{journal.coffeeId}</CardTitle>
-                    <CardText>{journal.dose}</CardText>
-                    <CardText>{journal.waterAmt}</CardText>
-                    <CardText>{journal.roastDate}</CardText>
-                    <CardText>{journal.brewMethod}</CardText>
-                    <CardText>{journal.notes}</CardText>
+                    <CardTitle>Coffee Used: {journal.coffeeId}</CardTitle>
+                    <CardText>Dose Size: {journal.dose}</CardText>
+                    <CardText>Water Used: {journal.waterAmt}</CardText>
+                    <CardText>Roast Date: {journal.roastDate}</CardText>
+                    <CardText>Brew Method: {journal.brewMethod}</CardText>
+                    <CardText>Notes: {journal.notes}</CardText>
                     <Button outline
                     color="warning"
                     onClick={() => this.props.history.push(`/journal/edit/${journal.id}`)}

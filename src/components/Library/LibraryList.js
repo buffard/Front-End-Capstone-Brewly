@@ -17,10 +17,10 @@ export default class LibraryList extends Component {
                     <CardTitle>{library.name}</CardTitle>
                     <CardSubtitle>{library.roaster}</CardSubtitle>
                     <CardText>{library.origin}</CardText>
-                    <CardText>{library.roastRating}</CardText>
-                    <CardText>{library.price}</CardText>
+                    <CardText>Roast Rating: {library.roastRating}</CardText>
+                    <CardText>Price: {library.price}</CardText>
+                    <CardText>Favorite Brew Method: {library.favoriteBrewMethod}</CardText>
                     <CardText>{library.size}</CardText>
-                    <CardText>{library.favoriteBrewMethod}</CardText>
                     <Button outline
                     color="warning"
                     onClick={() => this.props.history.push(`/library/edit/${library.id}`)}
@@ -33,7 +33,6 @@ export default class LibraryList extends Component {
                 </Card>
               </div>
             </div>
-
           )
         }
       </section>
