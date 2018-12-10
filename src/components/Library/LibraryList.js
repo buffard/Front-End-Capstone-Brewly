@@ -22,6 +22,10 @@ export default class LibraryList extends Component {
                     <CardText>{library.size}</CardText>
                     <CardText>{library.favoriteBrewMethod}</CardText>
                     <Button outline
+                    color="warning"
+                    onClick={() => this.props.history.push(`/library/edit/${library.id}`)}
+                    >Edit</Button>
+                    <Button outline
                     color="danger"
                     onClick={() => this.props.deleteLibrary(library.id)}
                     >Delete</Button>

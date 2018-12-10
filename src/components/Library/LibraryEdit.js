@@ -1,73 +1,54 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap'
 import './library.css'
 
-export default class LibraryForm extends Component {
-
+export default class LibraryEdit extends Component {
+  
   state = {
-    name: "",
-    origin: "",
-    roaster: "",
-    roastRating: "",
-    price: "",
-    size: "",
-    favoriteBrewMethod: ""
-  }
 
-  activeUser() {
-    return sessionStorage.getItem("credentials")
   }
-
-  // Update state whenever an input field is edited
+  
+  //this will watch the keystrokes in our inputs
   handleFieldChange = evt => {
     const stateToChange = {}
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
   }
 
-  constructNewLibrary = evt => {
-    evt.preventDefault()
-    console.log("trying to find my user", this.activeUser())
+  componentDidMount() {
+    const library = this.props.library.find(a => a.id === parseInt(this.props.match.params.todoId))
+    this.setState(library)
+  }
 
-    const library = {
+  constructNewLibrary = (evt) => {
+    evt.preventDefault()
+
+    let editedLibrary = {
       name: this.state.name,
       origin: this.state.origin,
       roaster: this.state.roaster,
       roastRating: this.state.rSelected,
       price: this.state.price,
       size: this.state.size,
-      favoriteBrewMethod: this.state.favoriteBrewMethod,
-      userId: this.activeUser()
+      favoriteBrewMethod: this.state.favoriteBrewMethod
     }
 
-    this.props.addLibrary(library)
-      .then(() => this.props.history.push("/library"))
-    //add this will post our new entry to todos db then will clear the form TODO:remove clear form if you dont want later
-    // .then(() => {
-    //   this.setState({
-    //     id: "",
-    //     name: "",
-    //     origin: "",
-    //     roaster: "",
-    //     roastRating: "",
-    //     price: "",
-    //     size: "",
-    //     favoriteBrewMethod: "",
-    //     userId: ""
-    //   })
-    // }
-    // )
-  }
-  //stuff for the roast rating
-
-  constructor(props) {
-    super(props)
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
+    this.props.editLibrary(this.state.id, editedLibrary)
+      .then(() => {
+        this.props.history.push("/library")
+      })
   }
 
-  onRadioBtnClick(rSelected) {
-    this.setState({ rSelected })
-  }
+    //stuff for the roast rating
+
+    constructor(props) {
+      super(props)
+      this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
+    }
+  
+    onRadioBtnClick(rSelected) {
+      this.setState({ rSelected })
+    }
 
   render() {
     return (
@@ -172,8 +153,9 @@ export default class LibraryForm extends Component {
           </Row>
         </Form>
       </Container>
+
+
+
     )
   }
 }
-
-
