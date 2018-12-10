@@ -29,7 +29,7 @@ export default class LibraryForm extends Component {
   constructNewLibrary = evt => {
     evt.preventDefault()
     console.log("trying to find my user", this.activeUser())
-    //the library object
+
     const library = {
       name: this.state.name,
       origin: this.state.origin,
@@ -80,8 +80,8 @@ export default class LibraryForm extends Component {
                 <Label for="name">Coffee's Name</Label>
                 <Input type="text"
                   name="name"
-                  onChange={this.handleFieldChange}
                   id="name"
+                  onChange={this.handleFieldChange}
                   value={this.state.name}
                 />
               </FormGroup>

@@ -14,6 +14,10 @@ export default class JournalForm extends Component {
     notes: ""
   }
 
+  activeUser() {
+    return sessionStorage.getItem("credentials")
+  }
+
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
     const stateToChange = {}
@@ -21,10 +25,9 @@ export default class JournalForm extends Component {
     this.setState(stateToChange)
   }
 
-  constructNewTodo = evt => {
+  constructNewJournal = evt => {
     evt.preventDefault()
-    //getting our user id from our local storage
-    const credentials = JSON.parse(localStorage.getItem('credentials'))
+    
     //the todo object
     const journal = {
       roastDate: this.state.roastDate,
@@ -33,28 +36,15 @@ export default class JournalForm extends Component {
       waterAmt: this.state.waterAmt,
       starRating: this.state.starRating,
       notes: this.state.notes,
-      userId: credentials.id,
+      userId: this.activeUser(),
       coffeeId: this.state.coffeeId,
       brewMethod: this.state.brewMethod
 
     }
-    //add this will post our new entry to todos db then will clear the form
-    this.props.addTodo(journal)
-      .then(() => {
-        this.setState({
-          id: "",
-          roastDate: "",
-          brewDate: "",
-          dose: "",
-          waterAmt: "",
-          starRating: "",
-          notes: "",
-          userId: "",
-          coffeeId: "",
-          brewMethod: ""
-        })
-      }
-      )
+    //add this will post our new journal entry to db then will clear the form
+    this.props.addJournal(journal)
+    //take us back to our journal page
+    .then(() => this.props.history.push("/journal"))
 
   }
 
@@ -67,13 +57,21 @@ export default class JournalForm extends Component {
             <Col xs="4">
               <FormGroup>
                 <Label for="roastDate">Roast Date</Label>
-                <Input type="date" name="roastDate" id="roastDate" />
+                <Input type="date" 
+                name="roastDate" 
+                id="roastDate"
+                onChange={this.handleFieldChange}
+                  value={this.state.roaster} />
               </FormGroup>
             </Col>
             <Col xs="4">
               <FormGroup>
                 <Label for="brewDate">Brew Date</Label>
-                <Input type="date" name="brewDate" id="brewDate" />
+                <Input type="date" 
+                name="brewDate" 
+                id="brewDate"
+                onChange={this.handleFieldChange}
+                  value={this.state.roaster} />
               </FormGroup>
             </Col>
           </Row>
@@ -81,19 +79,31 @@ export default class JournalForm extends Component {
             <Col xs="4">
               <FormGroup>
                 <Label for="dose">Dose</Label>
-                <Input type="text" name="dose" id="dose" />
+                <Input type="text" 
+                name="dose" 
+                id="dose"
+                onChange={this.handleFieldChange}
+                  value={this.state.roaster} />
               </FormGroup>
             </Col>
             <Col xs="4">
               <FormGroup>
                 <Label for="origin">Water Used</Label>
-                <Input type="text" name="origin" id="origin" />
+                <Input type="text" 
+                name="origin" 
+                id="origin"
+                onChange={this.handleFieldChange}
+                  value={this.state.roaster} />
               </FormGroup>
             </Col>
             <Col xs="4">
               <FormGroup>
                 <Label for="favoriteBrewMethod">Favorite Brew Method</Label>
-                <Input type="select" name="favoriteBrewMethod" id="favoriteBrewMethod">
+                <Input type="select" 
+                name="favoriteBrewMethod" 
+                id="favoriteBrewMethod"
+                onChange={this.handleFieldChange}
+                  value={this.state.roaster}>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -105,7 +115,11 @@ export default class JournalForm extends Component {
             <Col xs="12">
               <FormGroup>
                 <Label for="notes">Notes</Label>
-                <Input type="textarea" name="notes" id="notes" />
+                <Input type="textarea" 
+                name="notes" 
+                id="notes"
+                onChange={this.handleFieldChange}
+                  value={this.state.roaster} />
               </FormGroup>
             </Col>
           </Row>
@@ -113,7 +127,11 @@ export default class JournalForm extends Component {
           <Col xs="4">
             <FormGroup>
               <Label for="starRating">How did you like it</Label>
-              <Input type="select" name="starRating" id="starRating">
+              <Input type="select" 
+              name="starRating" 
+              id="starRating"
+              onChange={this.handleFieldChange}
+                  value={this.state.roaster}>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -124,7 +142,7 @@ export default class JournalForm extends Component {
             </Col>
           </Row>
           
-          <Button>Submit</Button>
+          <Button onClick={this.constructNewJournal}>Submit</Button>
         </Form>
       </Container>
     )
