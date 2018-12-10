@@ -20,6 +20,10 @@ export default class JournalList extends Component {
                     <CardText>{journal.roastDate}</CardText>
                     <CardText>{journal.brewMethod}</CardText>
                     <CardText>{journal.notes}</CardText>
+                    <Button outline
+                    color="warning"
+                    onClick={() => this.props.history.push(`/journal/edit/${journal.id}`)}
+                    >Edit</Button>
                     <Button outline 
                     color="danger" 
                     onClick={() => this.props.deleteJournal(journal.id)}

@@ -6,6 +6,7 @@ import JournalForm from './Journal/JournalForm'
 import LibraryPage from './Library/LibraryPage'
 import LibraryForm from './Library/LibraryForm'
 import LibraryEdit from './Library/LibraryEdit'
+import JournalEdit from './Journal/JournalEdit'
 
 export default class ApplicationViews extends Component {
 
@@ -38,6 +39,12 @@ export default class ApplicationViews extends Component {
     .then(() => DataManager.getAll("library"))
     .then(library => this.setState({
       library: library
+    }))
+
+  editJournal = (id, journal) => DataManager.edit("journal", id, journal)
+    .then(() => DataManager.getAll("journal"))
+    .then(journal => this.setState({
+      journal: journal
     }))
 
   editLibrary = (id, library) => DataManager.edit("library", id, library)
@@ -78,6 +85,12 @@ export default class ApplicationViews extends Component {
             addJournal={this.addJournal} />
         }} />
 
+        <Route exact path="/journal/edit/:journalId(\d+)" render={(props) => {
+          return <JournalEdit {...props}
+            journal={this.state.journal}
+            editJournal={this.editJournal} />
+        }} />
+
         <Route exact path="/library" render={(props) => {
           return <LibraryPage {...props}
             library={this.state.library}
@@ -92,13 +105,13 @@ export default class ApplicationViews extends Component {
             addLibrary={this.addLibrary} />
         }} />
 
-        <Route exact path="/library/edit/:todoId(\d+)" render={(props) => {
+        <Route exact path="/library/edit/:libraryId(\d+)" render={(props) => {
           return <LibraryEdit {...props}
             library={this.state.library}
             editLibrary={this.editLibrary}
           />
         }} />
-        
+
       </React.Fragment>
     )
   }

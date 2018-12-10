@@ -42,29 +42,13 @@ export default class LibraryForm extends Component {
 
     this.props.addLibrary(library)
       .then(() => this.props.history.push("/library"))
-    //add this will post our new entry to todos db then will clear the form TODO:remove clear form if you dont want later
-    // .then(() => {
-    //   this.setState({
-    //     id: "",
-    //     name: "",
-    //     origin: "",
-    //     roaster: "",
-    //     roastRating: "",
-    //     price: "",
-    //     size: "",
-    //     favoriteBrewMethod: "",
-    //     userId: ""
-    //   })
-    // }
-    // )
   }
-  //stuff for the roast rating
 
+  //stuff for the roast rating
   constructor(props) {
     super(props)
     this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
   }
-
   onRadioBtnClick(rSelected) {
     this.setState({ rSelected })
   }

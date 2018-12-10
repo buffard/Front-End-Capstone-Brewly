@@ -3,7 +3,6 @@ import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col
 import './library.css'
 
 export default class LibraryEdit extends Component {
-  
   state = {
 
   }
@@ -16,8 +15,11 @@ export default class LibraryEdit extends Component {
   }
 
   componentDidMount() {
-    const library = this.props.library.find(a => a.id === parseInt(this.props.match.params.todoId))
+    const library = this.props.library.find(a => a.id === parseInt(this.props.match.params.libraryId))
     this.setState(library)
+  }
+  activeUser() {
+    return sessionStorage.getItem("credentials")
   }
 
   constructNewLibrary = (evt) => {
@@ -30,9 +32,9 @@ export default class LibraryEdit extends Component {
       roastRating: this.state.rSelected,
       price: this.state.price,
       size: this.state.size,
-      favoriteBrewMethod: this.state.favoriteBrewMethod
+      favoriteBrewMethod: this.state.favoriteBrewMethod,
+      userId: this.activeUser()
     }
-
     this.props.editLibrary(this.state.id, editedLibrary)
       .then(() => {
         this.props.history.push("/library")
