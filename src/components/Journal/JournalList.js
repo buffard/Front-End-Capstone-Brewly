@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import { Card, Button, CardImg, CardTitle, CardText, CardSubtitle, CardBody } from 'reactstrap'
 import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } from 'reactstrap'
 import './journal.css'
 
@@ -21,13 +20,15 @@ export default class JournalList extends Component {
                     <CardText>{journal.roastDate}</CardText>
                     <CardText>{journal.brewMethod}</CardText>
                     <CardText>{journal.notes}</CardText>
-                    <Button>Go somewhere</Button>
+                    <Button outline 
+                    color="danger" 
+                    onClick={() => this.props.deleteJournal(journal.id)}
+                    >Delete</Button>
                   </CardBody>
                   <CardFooter>{journal.starRating}</CardFooter>
                 </Card>                  
               </div>
             </div>
-
           )
         }
       </section>

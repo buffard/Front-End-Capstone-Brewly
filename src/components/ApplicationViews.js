@@ -27,9 +27,21 @@ export default class ApplicationViews extends Component {
       library: library
     })
     )
-    
-    componentDidMount() {
-      const newState = {}
+
+  deleteJournal = id => DataManager.delete("journal", id)
+    .then(() => DataManager.getAll("journal"))
+    .then(journal => this.setState({
+      journal: journal
+    }))
+
+  deleteLibrary = id => DataManager.delete("library", id)
+    .then(() => DataManager.getAll("library"))
+    .then(library => this.setState({
+      library: library
+    }))
+
+  componentDidMount() {
+    const newState = {}
 
     DataManager.getAll("journal")
       .then(allEntries => {
@@ -49,7 +61,8 @@ export default class ApplicationViews extends Component {
         <Route exact path="/journal" render={(props) => {
           return <JournalPage {...props}
             journal={this.state.journal}
-            addJournal={this.addJournal} />
+            addJournal={this.addJournal}
+            deleteJournal={this.deleteJournal} />
         }} />
 
         <Route exact path="/journal/new" render={(props) => {
@@ -62,8 +75,8 @@ export default class ApplicationViews extends Component {
           return <LibraryPage {...props}
             library={this.state.library}
             addLibrary={this.addLibrary}
-            
-             />
+            deleteLibrary={this.deleteLibrary}
+          />
         }} />
 
         <Route exact path="/library/new" render={(props) => {

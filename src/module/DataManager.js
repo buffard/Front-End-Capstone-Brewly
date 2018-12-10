@@ -1,7 +1,22 @@
 const remoteURL = "http://localhost:5002"
 
 export default Object.create(null, {
-
+  //for registering and logging in
+  searchUsername: {
+    value: function(username) {
+      return fetch(`${remoteURL}/users?username=${username}`).then(result =>
+        result.json()
+      )
+    }
+  },
+  searchLogin: {
+    value: function(username, password) {
+      return fetch(
+        `${remoteURL}/users?username=${username}&password=${password}`
+      ).then(e => e.json())
+    }
+  },
+  //database calls
   get: {
     value: (resource, id) => {
       return fetch(`${remoteURL}/${resource}/${id}`)
@@ -26,30 +41,12 @@ export default Object.create(null, {
         .then(result => result.json())
     }
   },
-  searchUsername: {
-    value: function(username) {
-      return fetch(`${remoteURL}/users?username=${username}`).then(result =>
-        result.json()
-      )
-    }
-  },
-
-  searchLogin: {
-    value: function(username, password) {
-      return fetch(
-        `${remoteURL}/users?username=${username}&password=${password}`
-      ).then(e => e.json())
+  delete: {
+    value: (resource, id) => {
+      return fetch(`${remoteURL}/${resource}/${id}`, {
+        method: "DELETE"
+      }).then(result => result.json())
     }
   }
-
-
-
-
-
-
-
-
-
-
 
 })

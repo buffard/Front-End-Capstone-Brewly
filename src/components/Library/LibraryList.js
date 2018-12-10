@@ -21,7 +21,10 @@ export default class LibraryList extends Component {
                     <CardText>{library.price}</CardText>
                     <CardText>{library.size}</CardText>
                     <CardText>{library.favoriteBrewMethod}</CardText>
-                    <Button>Button</Button>
+                    <Button outline
+                    color="danger"
+                    onClick={() => this.props.deleteLibrary(library.id)}
+                    >Delete</Button>
                   </CardBody>
                 </Card>
               </div>
