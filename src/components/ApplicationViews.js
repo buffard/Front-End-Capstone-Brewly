@@ -5,7 +5,8 @@ import JournalPage from './Journal/JournalPage'
 import JournalForm from './Journal/JournalForm'
 import LibraryPage from './Library/LibraryPage'
 import LibraryForm from './Library/LibraryForm'
-
+import LibraryEdit from './Library/LibraryEdit'
+import JournalEdit from './Journal/JournalEdit'
 
 export default class ApplicationViews extends Component {
 
@@ -27,9 +28,33 @@ export default class ApplicationViews extends Component {
       library: library
     })
     )
-    
-    componentDidMount() {
-      const newState = {}
+
+  deleteJournal = id => DataManager.delete("journal", id)
+    .then(() => DataManager.getAll("journal"))
+    .then(journal => this.setState({
+      journal: journal
+    }))
+
+  deleteLibrary = id => DataManager.delete("library", id)
+    .then(() => DataManager.getAll("library"))
+    .then(library => this.setState({
+      library: library
+    }))
+
+  editJournal = (id, journal) => DataManager.edit("journal", id, journal)
+    .then(() => DataManager.getAll("journal"))
+    .then(journal => this.setState({
+      journal: journal
+    }))
+
+  editLibrary = (id, library) => DataManager.edit("library", id, library)
+    .then(() => DataManager.getAll("library"))
+    .then(library => this.setState({
+      library: library
+    }))
+
+  componentDidMount() {
+    const newState = {}
 
     DataManager.getAll("journal")
       .then(allEntries => {
@@ -46,10 +71,12 @@ export default class ApplicationViews extends Component {
   render() {
     return (
       <React.Fragment>
+
         <Route exact path="/journal" render={(props) => {
           return <JournalPage {...props}
             journal={this.state.journal}
-            addJournal={this.addJournal} />
+            addJournal={this.addJournal}
+            deleteJournal={this.deleteJournal} />
         }} />
 
         <Route exact path="/journal/new" render={(props) => {
@@ -58,12 +85,18 @@ export default class ApplicationViews extends Component {
             addJournal={this.addJournal} />
         }} />
 
+        <Route exact path="/journal/edit/:journalId(\d+)" render={(props) => {
+          return <JournalEdit {...props}
+            journal={this.state.journal}
+            editJournal={this.editJournal} />
+        }} />
+
         <Route exact path="/library" render={(props) => {
           return <LibraryPage {...props}
             library={this.state.library}
             addLibrary={this.addLibrary}
-            
-             />
+            deleteLibrary={this.deleteLibrary}
+          />
         }} />
 
         <Route exact path="/library/new" render={(props) => {
@@ -71,8 +104,18 @@ export default class ApplicationViews extends Component {
             library={this.state.library}
             addLibrary={this.addLibrary} />
         }} />
+
+        <Route exact path="/library/edit/:libraryId(\d+)" render={(props) => {
+          return <LibraryEdit {...props}
+            library={this.state.library}
+            editLibrary={this.editLibrary}
+          />
+        }} />
+
       </React.Fragment>
     )
   }
 }
+
+
 

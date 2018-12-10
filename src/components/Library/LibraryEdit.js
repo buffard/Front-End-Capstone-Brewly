@@ -1,35 +1,31 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap'
 import './library.css'
 
-export default class LibraryForm extends Component {
-
+export default class LibraryEdit extends Component {
   state = {
-    name: "",
-    origin: "",
-    roaster: "",
-    roastRating: "",
-    price: "",
-    size: "",
-    favoriteBrewMethod: ""
-  }
 
-  activeUser() {
-    return sessionStorage.getItem("credentials")
   }
-
-  // Update state whenever an input field is edited
+  
+  //this will watch the keystrokes in our inputs
   handleFieldChange = evt => {
     const stateToChange = {}
     stateToChange[evt.target.id] = evt.target.value
     this.setState(stateToChange)
   }
 
-  constructNewLibrary = evt => {
-    evt.preventDefault()
-    console.log("trying to find my user", this.activeUser())
+  componentDidMount() {
+    const library = this.props.library.find(a => a.id === parseInt(this.props.match.params.libraryId))
+    this.setState(library)
+  }
+  activeUser() {
+    return sessionStorage.getItem("credentials")
+  }
 
-    const library = {
+  constructNewLibrary = (evt) => {
+    evt.preventDefault()
+
+    let editedLibrary = {
       name: this.state.name,
       origin: this.state.origin,
       roaster: this.state.roaster,
@@ -39,19 +35,22 @@ export default class LibraryForm extends Component {
       favoriteBrewMethod: this.state.favoriteBrewMethod,
       userId: this.activeUser()
     }
-
-    this.props.addLibrary(library)
-      .then(() => this.props.history.push("/library"))
+    this.props.editLibrary(this.state.id, editedLibrary)
+      .then(() => {
+        this.props.history.push("/library")
+      })
   }
 
-  //stuff for the roast rating
-  constructor(props) {
-    super(props)
-    this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
-  }
-  onRadioBtnClick(rSelected) {
-    this.setState({ rSelected })
-  }
+    //stuff for the roast rating
+
+    constructor(props) {
+      super(props)
+      this.onRadioBtnClick = this.onRadioBtnClick.bind(this)
+    }
+  
+    onRadioBtnClick(rSelected) {
+      this.setState({ rSelected })
+    }
 
   render() {
     return (
@@ -60,7 +59,7 @@ export default class LibraryForm extends Component {
           <Row>
             <Col xs="6">
               <FormGroup>
-                <Label for="name">Coffee Name</Label>
+                <Label for="name">Coffee's Name</Label>
                 <Input type="text"
                   name="name"
                   id="name"
@@ -156,8 +155,9 @@ export default class LibraryForm extends Component {
           </Row>
         </Form>
       </Container>
+
+
+
     )
   }
 }
-
-

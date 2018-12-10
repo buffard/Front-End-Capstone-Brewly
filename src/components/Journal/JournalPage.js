@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button } from 'reactstrap';
+import JournalList from './JournalList.js'
+import { Button } from 'reactstrap'
 
 export default class JournalPage extends Component {
   render() {
@@ -11,6 +12,9 @@ export default class JournalPage extends Component {
           }}>
             Create New Entry
           </Button>
+        </div>
+        <div>
+          <JournalList {...this.props} />
         </div>
       </React.Fragment>
     )
