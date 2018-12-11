@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import JournalList from './JournalList.js'
 import { Button } from 'reactstrap'
 
-export default class JournalPage extends Component {
+export default class JournalEmpty extends Component {
   render() {
     return (
       <React.Fragment>
@@ -14,9 +14,7 @@ export default class JournalPage extends Component {
           </Button>
         </div>
         <div>
-        {
-          this.props.journal.length > 0 ? <JournalList {...this.props} /> : <p>No entries</p>
-        }
+          <p>No entries</p>
         </div>
       </React.Fragment>
     )

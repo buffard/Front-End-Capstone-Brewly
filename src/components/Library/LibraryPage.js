@@ -16,7 +16,9 @@ export default class LibraryPage extends Component {
           </Button>
         </div>
         <div >
-          <LibraryList {...this.props} />
+        {
+          this.props.library.length > 0 ? <LibraryList {...this.props} /> : <p>No entries</p>
+        }
         </div>
       </React.Fragment>
     )

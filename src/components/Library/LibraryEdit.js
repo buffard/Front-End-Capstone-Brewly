@@ -18,10 +18,7 @@ export default class LibraryEdit extends Component {
     const library = this.props.library.find(a => a.id === parseInt(this.props.match.params.libraryId))
     this.setState(library)
   }
-  activeUser() {
-    return sessionStorage.getItem("credentials")
-  }
-
+  
   constructNewLibrary = (evt) => {
     evt.preventDefault()
 
@@ -33,7 +30,7 @@ export default class LibraryEdit extends Component {
       price: this.state.price,
       size: this.state.size,
       favoriteBrewMethod: this.state.favoriteBrewMethod,
-      userId: this.activeUser()
+      userId: this.props.activeUser
     }
     this.props.editLibrary(this.state.id, editedLibrary)
       .then(() => {
@@ -102,9 +99,10 @@ export default class LibraryEdit extends Component {
                   id="favoriteBrewMethod"
                   onChange={this.handleFieldChange}
                   value={this.state.favoriteBrewMethod}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                   <option value="">-- Select Brew Method --</option>
+                  {
+                    this.props.brewMethods.map(e => <option key={e.id} id={e.id}> {e.name} </option>)
+                  }
                 </Input>
               </FormGroup>
             </Col>

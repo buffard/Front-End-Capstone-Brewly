@@ -19,9 +19,6 @@ export default class JournalEdit extends Component {
     this.setState(journal)
   }
 
-  activeUser() {
-    return sessionStorage.getItem("credentials")
-  }
 
   constructNewJournal = (evt) => {
     evt.preventDefault()
@@ -33,7 +30,7 @@ export default class JournalEdit extends Component {
       waterAmt: this.state.waterAmt,
       starRating: this.state.starRating,
       notes: this.state.notes,
-      userId: this.activeUser(),
+      userId: this.props.activeUser,
       coffeeId: this.state.coffeeId,
       brewMethod: this.state.brewMethod
     }
@@ -69,16 +66,17 @@ export default class JournalEdit extends Component {
               </FormGroup>
             </Col>
             <Col xs="4">
-              <FormGroup>
+            <FormGroup>
                 <Label for="coffeeId">Coffee Used</Label>
-                <Input type="select" 
-                name="coffeeId" 
-                id="coffeeId"
-                onChange={this.handleFieldChange}
+                <Input type="select"
+                  name="coffeeId"
+                  id="coffeeId"
+                  onChange={this.handleFieldChange}
                   value={this.state.coffeeId}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                  <option value="">--Coffee--</option>
+                  {
+                    this.props.library.map(e => <option key={e.id} id={e.id}> {e.name} </option>)
+                  }
                 </Input>
               </FormGroup>
             </Col>
@@ -106,15 +104,16 @@ export default class JournalEdit extends Component {
             </Col>
             <Col xs="4">
               <FormGroup>
-                <Label for="favoriteBrewMethod">Favorite Brew Method</Label>
+                <Label for="brewMethod">Favorite Brew Method</Label>
                 <Input type="select"
-                  name="favoriteBrewMethod"
-                  id="favoriteBrewMethod"
+                  name="brewMethod"
+                  id="brewMethod"
                   onChange={this.handleFieldChange}
-                  value={this.state.favoriteBrewMethod}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                  value={this.state.brewMethod}>
+                  <option value="">-- Select Brew Method --</option>
+                  {
+                    this.props.brewMethods.map(e => <option key={e.id} id={e.id}> {e.name} </option>)
+                  }
                 </Input>
               </FormGroup>
             </Col>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, ButtonGroup, Container, Row, Col } from 'reactstrap'
 import './library.css'
 
 export default class LibraryForm extends Component {
@@ -14,9 +14,7 @@ export default class LibraryForm extends Component {
     favoriteBrewMethod: ""
   }
 
-  activeUser() {
-    return sessionStorage.getItem("credentials")
-  }
+  
 
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
@@ -27,7 +25,7 @@ export default class LibraryForm extends Component {
 
   constructNewLibrary = evt => {
     evt.preventDefault()
-    console.log("trying to find my user", this.activeUser())
+    
 
     const library = {
       name: this.state.name,
@@ -37,7 +35,7 @@ export default class LibraryForm extends Component {
       price: this.state.price,
       size: this.state.size,
       favoriteBrewMethod: this.state.favoriteBrewMethod,
-      userId: this.activeUser()
+      userId: this.props.activeUser
     }
 
     this.props.addLibrary(library)
@@ -103,9 +101,10 @@ export default class LibraryForm extends Component {
                   id="favoriteBrewMethod"
                   onChange={this.handleFieldChange}
                   value={this.state.favoriteBrewMethod}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                 <option value="">-- Select Brew Method --</option>
+                  {
+                    this.props.brewMethods.map(e => <option key={e.id} id={e.id}> {e.name} </option>)
+                  }
                 </Input>
               </FormGroup>
             </Col>

@@ -23,6 +23,12 @@ export default Object.create(null, {
         .then(result => result.json())
     }
   },
+  getUserData: {
+    value: (resource, id) => {
+      return fetch(`${remoteURL}/${resource}?userId=${id}`)
+        .then(result => result.json())
+    }
+  },
   getAll: {
     value: (resource) => {
       return fetch(`${remoteURL}/${resource}`)
