@@ -4,9 +4,8 @@ import Brewly from "../Brewly"
 
 export default class IsAuth extends Component {
   //return credentials id from our session storage to activer user
-  activeUser() {
-    return sessionStorage.getItem("credentials")
-  }
+  activeUser = parseInt(sessionStorage.getItem("credentials"))
+  
 
   render() {
     

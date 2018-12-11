@@ -12,43 +12,44 @@ export default class ApplicationViews extends Component {
 
   state = {
     journal: [],
-    library: []
+    library: [],
+    brewMethods: []
   }
 
   addJournal = entries => DataManager.add("journal", entries)
-    .then(() => DataManager.getAll("journal"))
+    .then(() => DataManager.getUserData("journal", this.props.activeUser))
     .then(journal => this.setState({
       journal: journal
     })
     )
 
   addLibrary = entries => DataManager.add("library", entries)
-    .then(() => DataManager.getAll("library"))
+    .then(() => DataManager.getUserData("library", this.props.activeUser))
     .then(library => this.setState({
       library: library
     })
     )
 
   deleteJournal = id => DataManager.delete("journal", id)
-    .then(() => DataManager.getAll("journal"))
+    .then(() => DataManager.getUserData("journal", this.props.activeUser))
     .then(journal => this.setState({
       journal: journal
     }))
 
   deleteLibrary = id => DataManager.delete("library", id)
-    .then(() => DataManager.getAll("library"))
+    .then(() => DataManager.getUserData("library", this.props.activeUser))
     .then(library => this.setState({
       library: library
     }))
 
   editJournal = (id, journal) => DataManager.edit("journal", id, journal)
-    .then(() => DataManager.getAll("journal"))
+    .then(() => DataManager.getUserData("journal", this.props.activeUser))
     .then(journal => this.setState({
       journal: journal
     }))
 
   editLibrary = (id, library) => DataManager.edit("library", id, library)
-    .then(() => DataManager.getAll("library"))
+    .then(() => DataManager.getUserData("library", this.props.activeUser))
     .then(library => this.setState({
       library: library
     }))
@@ -56,14 +57,19 @@ export default class ApplicationViews extends Component {
   componentDidMount() {
     const newState = {}
 
-    DataManager.getAll("journal")
+    DataManager.getUserData("journal", this.props.activeUser)
       .then(allEntries => {
         newState.journal = allEntries
       })
 
-    DataManager.getAll("library")
+    DataManager.getUserData("library", this.props.activeUser)
       .then(allEntries => {
         newState.library = allEntries
+      })
+
+    DataManager.getAll("brewMethods")
+      .then(allEntries => {
+        newState.brewMethods = allEntries
       })
       .then(() => this.setState(newState))
   }
@@ -76,19 +82,27 @@ export default class ApplicationViews extends Component {
           return <JournalPage {...props}
             journal={this.state.journal}
             addJournal={this.addJournal}
-            deleteJournal={this.deleteJournal} />
+            deleteJournal={this.deleteJournal}
+            brewMethods={this.state.brewMethods}
+          />
         }} />
 
         <Route exact path="/journal/new" render={(props) => {
           return <JournalForm {...props}
             journal={this.state.journal}
-            addJournal={this.addJournal} />
+            addJournal={this.addJournal}
+            brewMethods={this.state.brewMethods}
+            library={this.state.library}
+          />
         }} />
 
         <Route exact path="/journal/edit/:journalId(\d+)" render={(props) => {
           return <JournalEdit {...props}
             journal={this.state.journal}
-            editJournal={this.editJournal} />
+            editJournal={this.editJournal}
+            brewMethods={this.state.brewMethods}
+            library={this.state.library}
+          />
         }} />
 
         <Route exact path="/library" render={(props) => {
@@ -102,13 +116,16 @@ export default class ApplicationViews extends Component {
         <Route exact path="/library/new" render={(props) => {
           return <LibraryForm {...props}
             library={this.state.library}
-            addLibrary={this.addLibrary} />
+            addLibrary={this.addLibrary}
+            brewMethods={this.state.brewMethods}
+          />
         }} />
 
         <Route exact path="/library/edit/:libraryId(\d+)" render={(props) => {
           return <LibraryEdit {...props}
             library={this.state.library}
             editLibrary={this.editLibrary}
+            brewMethods={this.state.brewMethods}
           />
         }} />
 
