@@ -10,6 +10,7 @@
 }
 .libraryCard {
 box-shadow: 10px 5px 5px silver;
+background-color: rgb(148, 218, 212) !important;
 }
 
 /* FORM */

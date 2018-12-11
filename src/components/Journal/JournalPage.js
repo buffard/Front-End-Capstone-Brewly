@@ -14,6 +14,7 @@ export default class JournalPage extends Component {
           </Button>
         </div>
         <div>
+        {/* TODO:Fix the no entries display */}
         {
           this.props.journal.length > 0 ? <JournalList {...this.props} /> : <p>No entries</p>
         }
