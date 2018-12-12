@@ -11,7 +11,7 @@ export default class LibraryList extends Component {
           this.props.library.map(library =>
             <div key={library.id}>
               <div>
-                <Card className="libraryCard" body inverse color="info" >
+                <Card className="libraryCard" body inverse >
                   <CardImg top width="100%" src={require("./coffeeImg.jpg")} alt="Card image cap" />
                   <CardBody>
                     <CardTitle>{library.name}</CardTitle>

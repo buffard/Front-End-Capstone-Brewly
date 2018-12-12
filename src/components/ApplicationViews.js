@@ -7,6 +7,10 @@ import LibraryPage from './Library/LibraryPage'
 import LibraryForm from './Library/LibraryForm'
 import LibraryEdit from './Library/LibraryEdit'
 import JournalEdit from './Journal/JournalEdit'
+import BrewGuidesPage from './BrewGuides/BrewGuidesPage'
+import Pourover from './BrewGuides/Pourover';
+import Frenchpress from './BrewGuides/Frenchpress';
+import Icedcoffee from './BrewGuides/Icedcoffee'
 
 export default class ApplicationViews extends Component {
 
@@ -128,6 +132,26 @@ export default class ApplicationViews extends Component {
             brewMethods={this.state.brewMethods}
           />
         }} />
+
+        <Route exact path="/brewguides" render={(props) => {
+          return <BrewGuidesPage {...props}
+          />
+        }} />
+
+        <Route exact path="/pourover" render={(props) => {
+          return <Pourover {...props}
+          />
+        }}/>
+
+        <Route exact path="/frenchpress" render={(props) => {
+          return <Frenchpress {...props}
+          />
+        }}/>
+
+        <Route exact path="/icedcoffee" render={(props) => {
+          return <Icedcoffee {...props}
+          />
+        }}/>       
 
       </React.Fragment>
     )

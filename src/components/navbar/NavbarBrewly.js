@@ -1,12 +1,5 @@
-import React from 'react';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink } from 'reactstrap';
+import React from 'react'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 
 export default class NavbarBrewly extends React.Component {
   constructor(props) {
@@ -45,6 +38,9 @@ export default class NavbarBrewly extends React.Component {
               </NavItem>
               <NavItem>
                 <NavLink href="/library">Coffee Library</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/brewguides">Brew Guides</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/logout" onClick={this.logout}>Log Out</NavLink>
