@@ -12,10 +12,10 @@ export default class JournalForm extends Component {
     waterAmt: "",
     starRating: "",
     notes: "",
-    brewMethod: ""
+    brewMethod: "",
+    coffeeId: "",
+    userId: ""
   }
-
-
 
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
@@ -27,7 +27,6 @@ export default class JournalForm extends Component {
   constructNewJournal = evt => {
     evt.preventDefault()
 
-    //the todo object
     const journal = {
       roastDate: this.state.roastDate,
       brewDate: this.state.brewDate,
@@ -36,8 +35,8 @@ export default class JournalForm extends Component {
       starRating: this.state.starRating,
       notes: this.state.notes,
       userId: this.props.activeUser,
-      coffeeId: this.state.coffeeId,
-      brewMethod: this.state.brewMethod
+      coffeeId: this.props.library.find(e => e.name === this.state.coffeeId).id,
+      brewMethod: this.props.brewMethods.find(e => e.name === this.state.brewMethod).id
 
     }
     //add this will post our new journal entry to db

@@ -14,8 +14,6 @@ export default class LibraryForm extends Component {
     favoriteBrewMethod: ""
   }
 
-  
-
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
     const stateToChange = {}
@@ -26,7 +24,6 @@ export default class LibraryForm extends Component {
   constructNewLibrary = evt => {
     evt.preventDefault()
     
-
     const library = {
       name: this.state.name,
       origin: this.state.origin,
@@ -34,7 +31,7 @@ export default class LibraryForm extends Component {
       roastRating: this.state.rSelected,
       price: this.state.price,
       size: this.state.size,
-      favoriteBrewMethod: this.state.favoriteBrewMethod,
+      favoriteBrewMethod: this.props.brewMethods.find(e => e.name === this.state.favoriteBrewMethod).id,
       userId: this.props.activeUser
     }
 

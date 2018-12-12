@@ -79,15 +79,17 @@ export default class ApplicationViews extends Component {
   }
 
   render() {
-    return (
+    return !this.state.library.length ? <span>Loading page...</span> : (
       <React.Fragment>
 
         <Route exact path="/journal" render={(props) => {
           return <JournalPage {...props}
             journal={this.state.journal}
+            library={this.state.library}
             addJournal={this.addJournal}
             deleteJournal={this.deleteJournal}
             brewMethods={this.state.brewMethods}
+            activeUser={this.props.activeUser}
           />
         }} />
 
@@ -97,6 +99,7 @@ export default class ApplicationViews extends Component {
             addJournal={this.addJournal}
             brewMethods={this.state.brewMethods}
             library={this.state.library}
+            activeUser={this.props.activeUser}
           />
         }} />
 
@@ -106,6 +109,7 @@ export default class ApplicationViews extends Component {
             editJournal={this.editJournal}
             brewMethods={this.state.brewMethods}
             library={this.state.library}
+            activeUser={this.props.activeUser}
           />
         }} />
 
@@ -114,6 +118,8 @@ export default class ApplicationViews extends Component {
             library={this.state.library}
             addLibrary={this.addLibrary}
             deleteLibrary={this.deleteLibrary}
+            brewMethods={this.state.brewMethods}
+            activeUser={this.props.activeUser}
           />
         }} />
 
@@ -122,6 +128,7 @@ export default class ApplicationViews extends Component {
             library={this.state.library}
             addLibrary={this.addLibrary}
             brewMethods={this.state.brewMethods}
+            activeUser={this.props.activeUser}
           />
         }} />
 
@@ -130,6 +137,7 @@ export default class ApplicationViews extends Component {
             library={this.state.library}
             editLibrary={this.editLibrary}
             brewMethods={this.state.brewMethods}
+            activeUser={this.props.activeUser}
           />
         }} />
 
@@ -140,16 +148,29 @@ export default class ApplicationViews extends Component {
 
         <Route exact path="/pourover" render={(props) => {
           return <Pourover {...props}
+          journal={this.state.journal}
+          library={this.state.library}
+          activeUser={this.props.activeUser}
+
+
           />
         }}/>
 
         <Route exact path="/frenchpress" render={(props) => {
           return <Frenchpress {...props}
+          journal={this.state.journal}
+          library={this.state.library}
+          activeUser={this.props.activeUser}
+
           />
         }}/>
 
         <Route exact path="/icedcoffee" render={(props) => {
           return <Icedcoffee {...props}
+          journal={this.state.journal}
+          library={this.state.library}
+          activeUser={this.props.activeUser}
+
           />
         }}/>       
 
