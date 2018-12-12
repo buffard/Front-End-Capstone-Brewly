@@ -3,10 +3,14 @@ import { Card, Button, CardHeader, CardFooter, CardBody, CardTitle, CardText } f
 import './journal.css'
 
 export default class JournalList extends Component {
+coffeeNameFinder = (coffeeId) => {
+  const coffeeName = this.props.library.find(library => library.id === coffeeId)
+  return(coffeeName.name)
+}
 
   render() {
     return (
-      <section  className="journalContainer">
+      <section className="journalContainer">
         {
           this.props.journal.map(journal =>
             <div key={journal.id}>
@@ -14,7 +18,8 @@ export default class JournalList extends Component {
                 <Card className="journalCard">
                   <CardHeader>Brew Date: {journal.brewDate}</CardHeader>
                   <CardBody>
-                    <CardTitle>Coffee Used: {journal.coffeeId}</CardTitle>
+                    <CardTitle>Coffee Used: {this.coffeeNameFinder(journal.coffeeId)}</CardTitle> 
+
                     <CardText>Dose Size: {journal.dose}</CardText>
                     <CardText>Water Used: {journal.waterAmt}</CardText>
                     <CardText>Roast Date: {journal.roastDate}</CardText>

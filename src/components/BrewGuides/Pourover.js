@@ -1,18 +1,89 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, CardHeader, CardFooter, CardBody, ListGroup, ListGroupItem, Badge } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardFooter, Label, Input, CardBody, ListGroup, ListGroupItem, Badge, FormGroup, Button } 
+from 'reactstrap'
+import DataManager from '../../module/DataManager'
 
 export default class Pourover extends Component {
+  state = {
+    journalEntries: [],
+    journal: ""
+  }
+
+  handleFieldChange = evt => {
+    const selectedValue = evt.target.value
+    DataManager.getJournalByCoffee("journal", this.props.activeUser, selectedValue)
+    .then((res) => this.setState({
+      journalEntries: res
+    }))
+  }
+
+  handleJournalFieldChange = evt => {
+    const selectedValue = evt.target.value
+    DataManager.get("journal", selectedValue)
+    .then((res)=> this.setState({
+      journal: res
+    }))
+  }
+
+  componentDidMount() {
+    const journal = this.props.journal.find(a => a.id === parseInt(this.props.match.params.journalId))
+    this.setState(journal)
+  }
+
   render() {
     return (
       <React.Fragment>
         <h1>Pour Over</h1>
         <Row>
+          <Col xs="3">
+            <FormGroup>
+              <Label for="coffeeId">Select a coffee</Label>
+              <Input type="select"
+                name="coffeeId"
+                id="coffeeId"
+                onChange={this.handleFieldChange}
+                >
+                <option value="">--Coffee--</option>
+                {
+                  this.props.library.map(e => <option key={e.id} value={e.id}> {e.name} </option>)
+                }
+              </Input>
+            </FormGroup>
+            {
+              this.state.journalEntries.length > 0 ? <FormGroup>
+              <Label for="journalEntries">Select a journal entry</Label>
+              <Input type="select"
+                name="journalEntries"
+                id="journalEntries"
+               onChange={this.handleJournalFieldChange}
+                >
+                <option value="">--Journal Entries--</option>
+                {
+                  this.state.journalEntries.map(e => <option key={e.id} value={e.id}> {e.brewDate} {e.starRating} </option>)
+                }
+              </Input>
+            </FormGroup> : null
+            }
+          </Col>
+          
+          <Col>
+          <br></br>
+          <Button outline 
+          color="primary"
+          onClick={() => this.props.history.push(`/brewguides`)}
+          >Back to Brew Guides</Button>{' '}
+          </Col>
+        </Row>
+        {
+              this.state.journal  ?
+        <Row>
           <Col xs="6">
             <Card>
-              <CardHeader className="">What You'll Need</CardHeader>
+              <CardHeader className="">What You'll Need <Label for="coffeeId">Coffee Used</Label>
+              </CardHeader>
               <CardBody>
                 <ListGroup flush className="text-center">
-                  <ListGroupItem>30 grams coffee</ListGroupItem>
+                  <ListGroupItem>{this.state.journal.dose} grams coffee</ListGroupItem>
                   <ListGroupItem>Scale</ListGroupItem>
                   <ListGroupItem>Grinder</ListGroupItem>
                   <ListGroupItem>Pour over brewer (such as Hario V60)</ListGroupItem>
@@ -68,7 +139,8 @@ Keep the liquid level in the dripper between ½ and ¾ full. Avoid pouring along
               <CardFooter></CardFooter>
             </Card>
           </Col>
-        </Row>
+        </Row> : <p>select your shit</p>
+            }
       </React.Fragment>
     )
   }

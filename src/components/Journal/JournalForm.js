@@ -12,7 +12,9 @@ export default class JournalForm extends Component {
     waterAmt: "",
     starRating: "",
     notes: "",
-    brewMethod: ""
+    brewMethod: "",
+    coffeeId: "",
+    userId: ""
   }
 
 
@@ -26,7 +28,7 @@ export default class JournalForm extends Component {
 
   constructNewJournal = evt => {
     evt.preventDefault()
-
+console.log(this.props.activeUser)
     //the todo object
     const journal = {
       roastDate: this.state.roastDate,
@@ -36,7 +38,7 @@ export default class JournalForm extends Component {
       starRating: this.state.starRating,
       notes: this.state.notes,
       userId: this.props.activeUser,
-      coffeeId: this.state.coffeeId,
+      coffeeId: this.props.library.find(e => e.name === this.state.coffeeId).id,
       brewMethod: this.state.brewMethod
 
     }

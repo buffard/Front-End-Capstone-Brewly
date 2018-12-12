@@ -29,6 +29,12 @@ export default Object.create(null, {
         .then(result => result.json())
     }
   },
+  getJournalByCoffee: {
+    value: (resource, id, coffeeId) => {
+      return fetch(`${remoteURL}/${resource}?userId=${id}&coffeeId=${coffeeId}`)
+        .then(result => result.json())
+    }
+  },
   getAll: {
     value: (resource) => {
       return fetch(`${remoteURL}/${resource}`)
