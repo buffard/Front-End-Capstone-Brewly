@@ -118,6 +118,7 @@ export default class ApplicationViews extends Component {
             library={this.state.library}
             addLibrary={this.addLibrary}
             deleteLibrary={this.deleteLibrary}
+            brewMethods={this.state.brewMethods}
             activeUser={this.props.activeUser}
           />
         }} />
