@@ -59,7 +59,7 @@ export default class Pourover extends Component {
                 >
                 <option value="">--Journal Entries--</option>
                 {
-                  this.state.journalEntries.map(e => <option key={e.id} value={e.id}> {e.brewDate} {e.starRating} </option>)
+                  this.state.journalEntries.map(e => <option key={e.id} value={e.id}> Brew Date: {e.brewDate} Star Rating: {e.starRating} </option>)
                 }
               </Input>
             </FormGroup> : null

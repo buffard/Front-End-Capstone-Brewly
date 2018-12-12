@@ -50,6 +50,8 @@ export default class LibraryEdit extends Component {
     }
 
   render() {
+    const favoriteBrewMethodName = this.props.library.find(e => e.id === this.state.favoriteBrewMethod) || {}
+
     return (
       <Container>
         <Form className="libraryForm">
