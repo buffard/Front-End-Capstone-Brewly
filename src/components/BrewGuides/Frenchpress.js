@@ -34,7 +34,7 @@ export default class Frenchpress extends Component {
       <React.Fragment>
         <h1>French Press</h1>
         <Row>
-        <Col xs="3">
+        <Col xs="9">
             <FormGroup>
               <Label for="coffeeId">Select a coffee</Label>
               <Input type="select"

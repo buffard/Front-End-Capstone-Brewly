@@ -90,7 +90,7 @@ export default class Pourover extends Component {
                   <ListGroupItem>Filter</ListGroupItem>
                   <ListGroupItem>Cup or Carafe to brew into</ListGroupItem>
                   <ListGroupItem>Kettle</ListGroupItem>
-                  <ListGroupItem>Hot water (195–205 F)</ListGroupItem>
+                  <ListGroupItem>{this.state.journal.waterAmt} grams Hot water (195–205 F)</ListGroupItem>
                   <ListGroupItem>Timer</ListGroupItem>
                 </ListGroup>
               </CardBody>
@@ -103,7 +103,7 @@ export default class Pourover extends Component {
               <CardBody className="instructionsBG">
                 <ListGroup>
                   <ListGroupItem className="justify-content-between">
-                    <Badge color="info" pill>1</Badge> Bring 500 grams water to a boil and let cool
+                    <Badge color="info" pill>1</Badge> Bring {this.state.journal.waterAmt} grams water to a boil and let cool
                   </ListGroupItem>
                   <ListGroupItem className="justify-content-between">
                     <Badge color="info" pill>2</Badge> Crease edges of paper filter in opposite directions to ensure fit then place filter in dripper

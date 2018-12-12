@@ -5,7 +5,7 @@ export default class LibraryList extends Component {
 
   brewMethodNameFinder = (brewMethod) => {
     const brewMethodName = this.props.brewMethods.find(brewMethodId => brewMethodId.id === brewMethod)
-    return(brewMethodName.name)
+    return (brewMethodName.name)
   }
 
   render() {
@@ -27,13 +27,13 @@ export default class LibraryList extends Component {
                     <CardText>Favorite Brew Method: {this.brewMethodNameFinder(library.favoriteBrewMethod)}</CardText>
                     <CardText>{library.size}</CardText>
                     <Button outline
-                    className="editBtn"
-                    color="warning"
-                    onClick={() => this.props.history.push(`/library/edit/${library.id}`)}
+                      className="editBtn"
+                      color="warning"
+                      onClick={() => this.props.history.push(`/library/edit/${library.id}`)}
                     >Edit</Button>
                     <Button outline
-                    color="danger"
-                    onClick={() => this.props.deleteLibrary(library.id)}
+                      color="danger"
+                      onClick={() => this.props.deleteLibrary(library.id)}
                     >Delete</Button>
                   </CardBody>
                 </Card>
