@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { Row, Col, Card, CardHeader, CardFooter, CardBody, CardText, ListGroup, ListGroupItem, Badge } from 'reactstrap'
+import { Row, Col, Card, CardHeader, CardFooter, CardBody, ListGroup, ListGroupItem, Badge } from 'reactstrap'
 
 export default class Pourover extends Component {
   render() {
     return (
       <React.Fragment>
+        <h1>Pour Over</h1>
         <Row>
           <Col xs="6">
             <Card>
               <CardHeader className="">What You'll Need</CardHeader>
               <CardBody>
-
                 <ListGroup flush className="text-center">
                   <ListGroupItem>30 grams coffee</ListGroupItem>
                   <ListGroupItem>Scale</ListGroupItem>
@@ -21,7 +21,6 @@ export default class Pourover extends Component {
                   <ListGroupItem>Kettle</ListGroupItem>
                   <ListGroupItem>Hot water (195–205 F)</ListGroupItem>
                   <ListGroupItem>Timer</ListGroupItem>
-                  <ListGroupItem>Kettle</ListGroupItem>
                 </ListGroup>
               </CardBody>
               <CardFooter></CardFooter>
