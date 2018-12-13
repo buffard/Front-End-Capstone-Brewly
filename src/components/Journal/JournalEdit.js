@@ -4,7 +4,15 @@ import './journal.css'
 
 export default class JournalEdit extends Component {
   state = {
-
+    roastDate: "",
+    brewDate: "",
+    dose: "",
+    waterAmt: "",
+    starRating: "",
+    notes: "",
+    brewMethod: "",
+    coffeeId: "",
+    userId: ""
   }
 
   //this will watch the keystrokes in our inputs
@@ -22,6 +30,8 @@ export default class JournalEdit extends Component {
 
   constructNewJournal = (evt) => {
     evt.preventDefault()
+    const conditionalCoffee = typeof this.state.coffeeId === "number"
+    const conditionalBrewMethod = typeof this.state.brewMethod === "number"
 
     let editedJournal = {
       roastDate: this.state.roastDate,
@@ -31,8 +41,8 @@ export default class JournalEdit extends Component {
       starRating: this.state.starRating,
       notes: this.state.notes,
       userId: this.props.activeUser,
-      coffeeId: this.props.library.find(e => e.name === this.state.coffeeId).id,
-      brewMethod: this.props.brewMethods.find(e => e.name === this.state.brewMethod).id
+      coffeeId: conditionalCoffee ? this.state.coffeeId : this.props.library.find(e => e.name === this.state.coffeeId).id,
+      brewMethod: conditionalBrewMethod ? this.state.brewMethod : this.props.brewMethods.find(e => e.name === this.state.brewMethod).id
     }
     this.props.editJournal(this.state.id, editedJournal)
       .then(() => {
@@ -41,6 +51,9 @@ export default class JournalEdit extends Component {
   }
 
   render() {
+    const coffeeName = this.props.library.find(e => e.id === this.state.coffeeId) || {}
+    const brewMethodName = this.props.brewMethods.find(e => e.id === this.state.brewMethod) || {}
+    
     return (
       <Container>
         <Form className="journalForm">
@@ -73,7 +86,7 @@ export default class JournalEdit extends Component {
                   id="coffeeId"
                   onChange={this.handleFieldChange}
                   value={this.state.coffeeId}>
-                  <option value="">--Coffee--</option>
+                  <option value={this.state.coffeeId}>{coffeeName.name}</option>
                   {
                     this.props.library.map(e => <option key={e.id} id={e.id}> {e.name} </option>)
                   }
@@ -110,7 +123,7 @@ export default class JournalEdit extends Component {
                   id="brewMethod"
                   onChange={this.handleFieldChange}
                   value={this.state.brewMethod}>
-                  <option value="">-- Select Brew Method --</option>
+                  <option value={this.state.brewMethod}>{brewMethodName.name}</option>
                   {
                     this.props.brewMethods.map(e => <option key={e.id} id={e.id}> {e.name} </option>)
                   }

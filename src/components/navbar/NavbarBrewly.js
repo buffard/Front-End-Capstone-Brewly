@@ -31,7 +31,7 @@ export default class NavbarBrewly extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/home">Home</NavLink>
+                <NavLink href="/">Home</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="/journal">Coffee Journal</NavLink>
@@ -43,7 +43,7 @@ export default class NavbarBrewly extends React.Component {
                 <NavLink href="/brewguides">Brew Guides</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="/logout" onClick={this.logout}>Log Out</NavLink>
+                <NavLink href="" onClick={this.logout}>Log Out</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

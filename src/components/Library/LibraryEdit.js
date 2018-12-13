@@ -4,7 +4,13 @@ import './library.css'
 
 export default class LibraryEdit extends Component {
   state = {
-
+    name: "",
+    origin: "",
+    roaster: "",
+    roastRating: "",
+    price: "",
+    size: "",
+    favoriteBrewMethod: ""
   }
   
   //this will watch the keystrokes in our inputs
