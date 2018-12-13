@@ -24,7 +24,11 @@ brewMethodNameFinder = (brewMethod) => {
                 <Card className="journalCard">
                   <CardHeader>Brew Date: {journal.brewDate}</CardHeader>
                   <CardBody>
-                    <CardTitle>Coffee Used: {this.coffeeNameFinder(journal.coffeeId)}</CardTitle> 
+                    <CardTitle>Coffee Used:
+                        {this.coffeeNameFinder(journal.coffeeId).length > 0 ? this.coffeeNameFinder(journal.coffeeId) : <p>Coffee was deleted</p>} </CardTitle> 
+
+
+
                     <CardText>Dose Size: {journal.dose}</CardText>
                     <CardText>Water Used: {journal.waterAmt}</CardText>
                     <CardText>Roast Date: {journal.roastDate}</CardText>

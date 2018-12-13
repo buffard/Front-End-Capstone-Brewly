@@ -45,7 +45,7 @@ export default class Home extends Component {
 
        <div>
        <FormGroup>
-              <Label for="recentJournal">Recents Coffee Journal Entries</Label>
+              <Label for="recentJournal">Your Most Recent Coffee Journal Entries</Label>
               <div type="select"
                 name="recentJournal"
                 id="recentJournal"

@@ -80,7 +80,7 @@ export default class ApplicationViews extends Component {
   }
 
   render() {
-    return !this.state.library.length ? <span>Loading page...</span> : (
+    return  (
       <React.Fragment>
 
         <Route exact path="/" render={(props) => {
