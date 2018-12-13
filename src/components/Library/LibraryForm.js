@@ -31,7 +31,7 @@ export default class LibraryForm extends Component {
       roastRating: this.state.rSelected,
       price: this.state.price,
       size: this.state.size,
-      favoriteBrewMethod: this.props.brewMethods.find(e => e.name === this.state.favoriteBrewMethod).id,
+      favoriteBrewMethod: this.state.favoriteBrewMethod,
       userId: this.props.activeUser
     }
 
@@ -131,7 +131,7 @@ export default class LibraryForm extends Component {
           <Row>
             <Col sm="12" md={{ size: 6, offset: 3 }}>
               <FormGroup>
-                <h5>Radio Buttons</h5>
+                <h5>Where does it fall from Light to Dark roast? </h5>
                 <ButtonGroup >
                   <Button className="roast1 roastBtn" onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}></Button>
                   <Button className="roast2 roastBtn" onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}></Button>
