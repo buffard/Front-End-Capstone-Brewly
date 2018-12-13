@@ -8,9 +8,10 @@ import LibraryForm from './Library/LibraryForm'
 import LibraryEdit from './Library/LibraryEdit'
 import JournalEdit from './Journal/JournalEdit'
 import BrewGuidesPage from './BrewGuides/BrewGuidesPage'
-import Pourover from './BrewGuides/Pourover';
-import Frenchpress from './BrewGuides/Frenchpress';
+import Pourover from './BrewGuides/Pourover'
+import Frenchpress from './BrewGuides/Frenchpress'
 import Icedcoffee from './BrewGuides/Icedcoffee'
+import Home from './Home/Home'
 
 export default class ApplicationViews extends Component {
 
@@ -81,6 +82,15 @@ export default class ApplicationViews extends Component {
   render() {
     return !this.state.library.length ? <span>Loading page...</span> : (
       <React.Fragment>
+
+        <Route exact path="/" render={(props) => {
+          return <Home {...props}
+          activeUser={this.props.activeUser}
+          journal={this.state.journal}
+          library={this.state.library}
+
+          />
+        }} />
 
         <Route exact path="/journal" render={(props) => {
           return <JournalPage {...props}

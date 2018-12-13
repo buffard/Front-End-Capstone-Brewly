@@ -24,7 +24,7 @@ export default class LibraryList extends Component {
                     <CardText>{library.origin}</CardText>
                     <CardText>Roast Rating: {library.roastRating}</CardText>
                     <CardText>Price: {library.price}</CardText>
-                    <CardText>Favorite Brew Method: {this.brewMethodNameFinder(library.favoriteBrewMethod)}</CardText>
+                    <CardText>Favorite Brew Method: {library.favoriteBrewMethod} </CardText>
                     <CardText>{library.size}</CardText>
                     <Button outline
                       className="editBtn"

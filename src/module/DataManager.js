@@ -35,6 +35,12 @@ export default Object.create(null, {
         .then(result => result.json())
     }
   },
+  getRecentJournal: {
+    value: (resource, id) => {
+      return fetch(`${remoteURL}/${resource}?userId=${id}&_sort=brewDate&_order=desc&_limit=4`)
+      .then(result => result.json())
+    }
+  },
   getAll: {
     value: (resource) => {
       return fetch(`${remoteURL}/${resource}`)

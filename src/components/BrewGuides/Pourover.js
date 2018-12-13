@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import DataManager from '../../module/DataManager'
 import { Row, Col, Card, CardHeader, CardFooter, Label, Input, CardBody, ListGroup, ListGroupItem, Badge, FormGroup, Button } 
 from 'reactstrap'
-import DataManager from '../../module/DataManager'
 
 export default class Pourover extends Component {
   state = {

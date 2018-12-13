@@ -4,7 +4,13 @@ import './library.css'
 
 export default class LibraryEdit extends Component {
   state = {
-
+    name: "",
+    origin: "",
+    roaster: "",
+    roastRating: "",
+    price: "",
+    size: "",
+    favoriteBrewMethod: ""
   }
   
   //this will watch the keystrokes in our inputs
@@ -50,8 +56,6 @@ export default class LibraryEdit extends Component {
     }
 
   render() {
-    const favoriteBrewMethodName = this.props.library.find(e => e.id === this.state.favoriteBrewMethod) || {}
-
     return (
       <Container>
         <Form className="libraryForm">

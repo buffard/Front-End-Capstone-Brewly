@@ -87,7 +87,7 @@ export default class Frenchpress extends Component {
                   <ListGroupItem>Stirring utensil</ListGroupItem>
                   <ListGroupItem>Cup or Carafe to brew into</ListGroupItem>
                   <ListGroupItem>Kettle</ListGroupItem>
-                  <ListGroupItem>Hot water (195–205 F)</ListGroupItem>
+                  <ListGroupItem>{this.state.journal.waterAmt} grams Hot water (195–205 F)</ListGroupItem>
                   <ListGroupItem>Timer</ListGroupItem>
                 </ListGroup>
               </CardBody>
@@ -100,7 +100,7 @@ export default class Frenchpress extends Component {
               <CardBody className="instructionsBG">
                 <ListGroup>
                   <ListGroupItem className="justify-content-between">
-                    <Badge color="info" pill>1</Badge> Heat 900 grams of water to boil and let cool
+                    <Badge color="info" pill>1</Badge> Heat {this.state.journal.waterAmt} grams of water to boil and let cool
                   </ListGroupItem>
                   <ListGroupItem className="justify-content-between">
                     <Badge color="info" pill>2</Badge> Grind the appropriate amount of coffee just before brewing
