@@ -7,6 +7,10 @@ export default class LibraryList extends Component {
     const brewMethodName = this.props.brewMethods.find(brewMethodId => brewMethodId.id === brewMethod)
     return (brewMethodName.name)
   }
+  //this will check and see if any journals use coffee's in our library 
+  deleteCheck = (libraryId) => {
+    return this.props.journal.some(journal => journal.coffeeId === libraryId)
+  }
 
   render() {
     return (
@@ -31,10 +35,14 @@ export default class LibraryList extends Component {
                       color="warning"
                       onClick={() => this.props.history.push(`/library/edit/${library.id}`)}
                     >Edit</Button>
-                    <Button outline
-                      color="danger"
-                      onClick={() => this.props.deleteLibrary(library.id)}
-                    >Delete</Button>
+                    {/* Run the check and if it comes back true render null otherwise show the delete button */}
+                    {this.deleteCheck(library.id) ? null :
+                      <Button outline
+                        color="danger"
+                        onClick={() => this.props.deleteLibrary(library.id)}
+                      >Delete</Button>}
+
+
                   </CardBody>
                 </Card>
               </div>

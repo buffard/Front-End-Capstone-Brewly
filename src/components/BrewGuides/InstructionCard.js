@@ -6,7 +6,7 @@ export default class InstructionCard extends Component {
 
   render() {
     return (
-      <div>
+      <div className="instructionDiv">
         <Jumbotron>
           <h1 className="display-3">Select a coffee!</h1>
           <p className="lead">Then select from your journal entries. </p>
