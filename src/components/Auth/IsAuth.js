@@ -9,7 +9,6 @@ export default class IsAuth extends Component {
 
 
   render() {
-    console.log("will you be my AU", this.activeUser)
     return <React.Fragment>
         {this.props.isAuthenticated() ? (
           // take user to our app

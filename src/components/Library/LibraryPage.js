@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Button } from 'reactstrap';
-import LibraryList from './LibraryList';
+import { Button } from 'reactstrap'
+import LibraryList from './LibraryList'
+import LibraryEmptyPage from './LibraryEmptyPage'
 import './library.css'
 
 export default class LibraryPage extends Component {
@@ -17,7 +18,7 @@ export default class LibraryPage extends Component {
         </div>
         <div >
         {
-          this.props.library.length > 0 ? <LibraryList {...this.props} /> : <p>No entries</p>
+          this.props.library.length > 0 ? <LibraryList {...this.props} /> : <LibraryEmptyPage />
         }
         </div>
       </React.Fragment>
